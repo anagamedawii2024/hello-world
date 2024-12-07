@@ -13,3 +13,12 @@ install:
   - curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
   - sudo apt-get install -y nodejs
 
+before_build:
+  # Clone repository and set execute permissions
+  - git clone https://github.com/mohamedmahdydeveloper/react_starter_project
+  - chmod +x react_starter_project/npm_install
+
+build_script:
+  # Navigate to the project directory, run npm_install, and build
+  - cd react_starter_project && ./npm_install
+  - cd react_starter_project && npm run build
