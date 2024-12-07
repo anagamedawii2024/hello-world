@@ -1,0 +1,23 @@
+version: 1.0.{build}
+
+image: Ubuntu
+
+clone_depth: 1
+
+environment:
+  nodejs_version: 16
+
+install:
+  # تثبيت Node.js والإعداد
+  - ps: Install-Product node $env:nodejs_version
+
+before_build:
+  # استنساخ المستودع وتغيير الصلاحيات
+  - git clone https://github.com/mohamedmahdydeveloper/react_starter_project
+  - cd react_starter_project
+  - chmod +x npm_install
+
+build_script:
+  # تشغيل السكربت والبناء
+  - ./npm_install
+  - npm run build
